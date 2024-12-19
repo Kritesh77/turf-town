@@ -1,14 +1,5 @@
-:root {
-  --color-primary : #EBEBED;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+@import "../styles/typography.css";
+@import "../styles/colors.css";
 
 html,
 body {
@@ -17,15 +8,63 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-background-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family);
 }
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+h1 {
+  font-size: var(--font-size-xxl);
+}
+.animate-loading {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.btn-primary {
+  background-color: white;
+}
+.btn-primary .btn-icon {
+  height: 15px;
+  aspect-ratio: 1;
+  cursor: pointer;
+}
+
+.relative {
+  position: relative;
+}
+.flex-justify-center {
+  align-items: center;
+  display: flex;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-container {
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+.main-logo-container {
+}
+.grid-cols-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }

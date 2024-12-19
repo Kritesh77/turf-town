@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "Nunito";
+  src: url("/fonts/nunito/Nunito-VariableFont_wght.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nunito";
+  src: url("/fonts/nunito/Nunito-Italic-VariableFont_wght.ttf") format("ttf");
+  font-weight: normal;
+  font-style: italic;
+}
+:root {
+  --font-family: "Nunito";
+  /* Font Sizes */
+  --font-size-xxs: 10px;
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-xxl: 32px;
+
+  /* Font Weights */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
+
+  /* Line Heights */
+  --line-height-sm: 1.2;
+  --line-height-md: 1.5;
+  --line-height-lg: 1.8;
+}
