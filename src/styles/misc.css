@@ -1,0 +1,43 @@
+:root {
+  /* Border radius */
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --padding-page-x: 4rem;
+  --padding-page-x-md: 6rem;
+  --padding-page-x-lg: 10rem;
+  --padding-page-x-xl: 40%;
+  --padding-page-top-md: 4rem;
+  --padding-page-top-lg: 6rem;
+
+  /* Loaders */
+  --loader-height-md:24px;
+  --loader-height-lg:40px;
+  --loader-height-xl:60px;
+}
+
+.page-padding-x {
+  padding-left: var(--padding-page-x);
+  padding-right: var(--padding-page-x);
+}
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+  .page-padding-x {
+    padding-left: var(--padding-page-x-md);
+    padding-right: var(--padding-page-x-md);
+  }
+}
+
+/* Large devices (desktops, 1024px and up) */
+@media (min-width: 1024px) {
+  .page-padding-x {
+    padding-left: var(--padding-page-x-lg);
+    padding-right: var(--padding-page-x-lg);
+  }
+}
+
+/* Extra-large devices (large desktops, 1440px and up) */
+@media (min-width: 1440px) {
+  :root {
+    --page-padding-left: 40px;
+  }
+}

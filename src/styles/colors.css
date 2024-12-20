@@ -2,27 +2,22 @@
   /* Colors  */
   --color-primary: #000000;
   --color-primary-light: #585858;
-  --color-primary-dark: #0056b3;
+  --color-secondary: #305df0;
   --color-background-light: #ebebed;
-  /* Neutral Colors */
-  --color-white: #ffffff;
-  --color-black: #000000;
-  --color-gray-light: #f8f9fa;
-  --color-gray: #adb5bd;
-  --color-gray-dark: #343a40;
 
   /* Status Colors */
   --color-success: #28a745;
-  --color-warning: #ffc107;
-  --color-danger: #dc3545;
-  --color-info: #17a2b8;
-
-  /* Typography */
-  --font-family-base: "Arial, sans-serif";
-  --font-size-base: 16px;
-  --font-weight-bold: 700;
+  --color-error: #ff6868;
 
   /* Buttons  */
+  --color-button-title: #2e2e2e;
+  --color-button-primary: #5d7ce3;
+  --color-button-primary-hover:#4f6bc5;
+  --color-button-disabled: #e7e7e7;
+  --color-button-disabled-title: #a4a4a4;
   --button-padding-horizontal: 12px;
-  --button-padding-vertical: 8px;
+  --button-padding-vertical: 16px;
+  --color-input-error: #fff7f7;
+  /* Inputs */
+  --color-input-border: #d6d6d6;
 }

@@ -1,0 +1,24 @@
+.toast-container {
+  border-radius: 70px;
+  background-color: #222222;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  gap: 12;
+  align-items: center;
+}
+
+.toast-icon {
+  height: 26px;
+  aspect-ratio: 1;
+  background-color: #414141;
+  border-radius: 1000%;
+}
+.toast-container .toast-title {
+  color: white;
+}
