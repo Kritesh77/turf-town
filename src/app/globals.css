@@ -355,9 +355,11 @@ button {
     display: flex;
     padding: 0 var(--padding-page-x-sm);
     flex-direction: column;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
   }
   .login-image-container-front {
-    top: 50% !important;
+    top: 80% !important;
     left: 25% !important;
   }
   .login-image-container-back {
@@ -365,7 +367,7 @@ button {
     right: 100 !important;
   }
   .login-image-subTitle {
-    top:010;
+    top: 010;
     left: 0;
   }
   .login-flow-container {
