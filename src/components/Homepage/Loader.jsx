@@ -4,7 +4,12 @@ import { motion } from "framer-motion";
 
 const Loader = () => {
   return (
-    <motion.div className="main-container grid-cols-2 ">
+    <motion.div
+      initial={{ opacity: 0 }} // Enter animation
+      animate={{ opacity: 1 }} // During visible state
+      exit={{ opacity: 0 }}
+      className="main-container grid-cols-2 "
+    >
       <div className="page-padding-x login-flow-container">
         <div className="relative animate-container-logo"></div>
         <div className="login-text-container animate-loading">

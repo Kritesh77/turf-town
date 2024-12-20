@@ -8,7 +8,6 @@ import Image from "next/image";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 export default function Home() {
   const [time, setTime] = useState(1); // Timer value
-
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -24,14 +23,14 @@ export default function Home() {
   }, [time]);
 
   return (
-    <AnimatePresence>
+    <>
       {isLoading ? (
         <Loader isLoading={isLoading} />
       ) : (
         <motion.main
-          initial={{ opacity: 0 }} // Enter animation
-          animate={{ opacity: 1 }} // During visible state
-          exit={{ opacity: 0 }} // Exit animation
+          initial={{ opacity: 0 }} 
+          animate={{ opacity: 1 }}  
+          exit={{ opacity: 0 }} 
           transition={{ duration: 1 }}
           className="main-container grid-cols-2"
         >
@@ -44,6 +43,7 @@ export default function Home() {
                 height={0}
                 width={100}
                 style={{ objectFit: "contain" }}
+                priority={true}
               />
             </motion.div>
             <LoginSplashScreen />
@@ -90,6 +90,6 @@ export default function Home() {
           </div>
         </motion.main>
       )}
-    </AnimatePresence>
+    </>
   );
 }

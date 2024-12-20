@@ -8,6 +8,7 @@ const Input = ({
   value,
   placeholder,
   errorMessage,
+  inputStyles,
 }) => {
   return (
     <div className={`input-container ${errorMessage ? "input-error" : ""}`}>
@@ -16,7 +17,7 @@ const Input = ({
         id="phone"
         value={value}
         name={name}
-        className="input"
+        className={`${inputStyles ? inputStyles : ""} input`}
         required={isRequired}
         onChange={handleChange}
         placeholder={placeholder}

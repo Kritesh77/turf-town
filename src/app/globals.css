@@ -61,6 +61,9 @@ h1 {
 .page-padding-l {
   padding: var(--padding-page-left);
 }
+.w-full{
+  width: 100%;
+}
 /* Button styles start */
 button {
   border: none;
@@ -139,7 +142,6 @@ button {
 }
 .input-container:not(.input-error) input:hover {
   outline: 2px solid var(--color-input-border);
-  /* box-shadow: 0 0 0 2px var(--color-input-border); */
 }
 .input-container {
   height: 100%;
@@ -148,7 +150,7 @@ button {
 .input-container input {
   padding-right: 2rem;
 }
-.input:focus {
+.input-container:not(.input-error) input:focus {
   outline: 2px solid var(--color-secondary) !important;
 }
 .input-error input {
@@ -166,17 +168,29 @@ button {
 }
 .phone-input-container {
   display: flex;
-  gap: 12;
+  gap: 12px;
 }
 .phone-input {
+  font-weight: 400;
   width: 100%;
+}
+.phone-input::placeholder {
+  font-weight: normal;
+}
+.otp-input {
+  letter-spacing: 6px;
+  font-weight: 400;
+}
+.otp-input::placeholder {
+  font-weight: normal;
+  letter-spacing: normal;
 }
 .relative {
   position: relative;
 }
 .flex {
   display: flex;
-  gap: 2;
+  gap: 2px;
 }
 .flex-col {
   flex-direction: column;
@@ -323,6 +337,7 @@ button {
   text-decoration: underline;
 }
 .resend-time {
+  font-weight: 700;
   color: #888888;
   cursor: not-allowed;
 }

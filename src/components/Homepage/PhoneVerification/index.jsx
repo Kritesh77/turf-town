@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import PhoneVerificationStep1 from "./PhoneVerificationStep1";
 import PhoneVerificationStep2 from "./PhoneVerificationStep2";
 import LoginTextComp from "@/components/common/LoginText";
-
+import { motion } from "framer-motion";
 const PhoneVerification = ({ handleClick }) => {
   const [step, setStep] = useState(0);
   const loginSteps = [
@@ -32,14 +32,19 @@ const PhoneVerification = ({ handleClick }) => {
   };
 
   return (
-    <>
+    <motion.section
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <LoginTextComp
         title={stepData?.title}
         subTitle={stepData?.subTitle}
         coolShapeImage={stepData?.coolShapeImage}
       />
       {stepData?.component?.()}
-    </>
+    </motion.section>
   );
 };
 

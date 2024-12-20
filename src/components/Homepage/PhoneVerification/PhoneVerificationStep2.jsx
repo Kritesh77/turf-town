@@ -45,7 +45,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
     setToast({
       id: 1,
       title: "Code resent",
-      timeOut: 1000,
+      timeOut: 1600,
       isActive: true,
     });
     setErrorMessage("");
@@ -56,7 +56,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
 
   return (
     <>
-      <Toast toast={toast} setToast={setToast}/>
+      <Toast toast={toast} setToast={setToast} />
       <div className="login-btn-containers">
         <div className="phone-input-container">
           <div className="phone-input" onClick={() => setNumber(4456)}>
@@ -67,6 +67,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
               handleChange={handleInputClick}
               placeholder="Enter the 4 digit code"
               errorMessage={errorMessage}
+              inputStyles='otp-input'
             />
           </div>
         </div>
@@ -82,9 +83,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
           <p>Didn’t get it?</p>
 
           {isTimerActive ? (
-            <p className="resend-time" onClick={handleResendOtp}>
-              Resend in {formatTime(time)}
-            </p>
+            <p className="resend-time">Resend in {formatTime(time)}</p>
           ) : (
             <p className="resend-text" onClick={handleResendOtp}>
               Resend Code

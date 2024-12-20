@@ -5,7 +5,7 @@ import LoginTextComp from "@/components/common/LoginText";
 import { isPhoneNumberValid } from "@/utils/functions";
 import React, { useEffect, useState } from "react";
 
-const PhoneVerificationStep1 = ({handleClick}) => {
+const PhoneVerificationStep1 = ({ handleClick }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [number, setNumber] = useState("");
 
@@ -22,6 +22,11 @@ const PhoneVerificationStep1 = ({handleClick}) => {
     setIsButtonDisabled(true);
   }, [number]);
 
+  const validateAndProceed = () => {
+    if (!isPhoneNumberValid(number)) return;
+    handleClick();
+  };
+
   return (
     <>
       <div className="login-btn-containers">
@@ -30,11 +35,12 @@ const PhoneVerificationStep1 = ({handleClick}) => {
             <span className="btn-icon country-flag">🇮🇳</span>
             <p className="country-code">+91</p>
           </div>
-          <div className="phone-input" onClick={() => setNumber(9941882305)}>
+          <div className="w-full" onClick={() => setNumber(9941882305)}>
             <Input
               type="tel"
               name="phoneNo"
               value={number}
+              inputStyles="phone-input"
               handleChange={handleInputClick}
               placeholder="Enter your phone number"
             />
@@ -42,7 +48,7 @@ const PhoneVerificationStep1 = ({handleClick}) => {
         </div>
         <div>
           <Button
-          handleClick={handleClick}
+            handleClick={validateAndProceed}
             title="Continue"
             isDisabled={isButtonDisabled}
             color={"primary"}

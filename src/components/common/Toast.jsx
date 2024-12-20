@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import "../../styles/toast.css";
 import Image from "next/image";
+import { AnimatePresence, motion } from "framer-motion";
 const Toast = ({ toast, setToast }) => {
   const intervalRef = useRef(null);
 
@@ -16,9 +17,17 @@ const Toast = ({ toast, setToast }) => {
   }, [toast]);
 
   return (
-    <>
+    <AnimatePresence>
       {toast?.isActive && (
-        <div className={`toast-container`}>
+        <motion.div
+          initial={{ opacity: 0, bottom: "100%" }}
+          animate={{ opacity: 1, bottom: 30 }}
+          transition={{
+            duration: 0.5,
+          }}
+          exit={{ opacity: 0 }}
+          className={`toast-container`}
+        >
           <div className="toast-icon relative">
             <Image
               alt="toast icon"
@@ -28,9 +37,9 @@ const Toast = ({ toast, setToast }) => {
             />
           </div>
           <p className="toast-title">{toast?.title}</p>
-        </div>
+        </motion.div>
       )}
-    </>
+    </AnimatePresence>
   );
 };
 export default Toast;
