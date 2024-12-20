@@ -4,7 +4,8 @@ import Input from "@/components/common/Input";
 import LoginTextComp from "@/components/common/LoginText";
 import { isPhoneNumberValid } from "@/utils/functions";
 import React, { useEffect, useState } from "react";
-
+import { motion } from "framer-motion";
+import { basicOpacityAnimate } from "@/utils/framerAnimate";
 const PhoneVerificationStep1 = ({ handleClick }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [number, setNumber] = useState("");
@@ -28,7 +29,9 @@ const PhoneVerificationStep1 = ({ handleClick }) => {
   };
 
   return (
-    <>
+    <motion.section
+     {...basicOpacityAnimate}
+    >
       <div className="login-btn-containers">
         <div className="phone-input-container">
           <div className="relative country-container">
@@ -55,7 +58,7 @@ const PhoneVerificationStep1 = ({ handleClick }) => {
           />
         </div>
       </div>
-    </>
+    </motion.section>
   );
 };
 

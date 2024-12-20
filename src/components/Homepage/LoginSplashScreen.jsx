@@ -4,8 +4,10 @@ import Button from "../common/Button";
 import LoginTextComp from "../common/LoginText";
 import { LOGIN_TYPES } from "@/utils/constants";
 import PhoneVerification from "./PhoneVerification";
+import InitalLoginScreen from "./InitalLoginScreen";
+import { AnimatePresence } from "framer-motion";
 
-const LoginSplashScreen = ({ isLoading }) => {
+const LoginSplashScreen = () => {
   const initiateLogin = (e, forceToLoginScreen) => {
     if (forceToLoginScreen) {
       setStepData(loginMethods[LOGIN_TYPES.INITIAL]);
@@ -56,60 +58,6 @@ const LoginSplashScreen = ({ isLoading }) => {
   const [stepData, setStepData] = useState(loginMethods.INITIAL);
 
   return <>{stepData?.component?.()}</>;
-};
-
-export const InitalLoginScreen = ({
-  title,
-  subTitle,
-  coolShapeImage,
-  handleClick,
-}) => {
-  return (
-    <>
-      <LoginTextComp
-        title={title}
-        subTitle={subTitle}
-        coolShapeImage={coolShapeImage}
-      />
-      <div className="login-btn-containers">
-        <div>
-          <Button
-            title="Login with Google"
-            icon={{
-              src: "/assets/icons/google 1.svg",
-              alt: "Google icon",
-            }}
-          />
-        </div>
-        <div className="text-center separator">
-          <p>or</p>
-        </div>
-        <div className="">
-          <div>
-            <Button
-              handleClick={handleClick}
-              name={LOGIN_TYPES.PHONE}
-              title="Login with Phone"
-              icon={{
-                src: "/assets/icons/fi_4029932.svg",
-                alt: "Phone icon",
-              }}
-            />
-          </div>
-          <div>
-            <Button
-              title="Login with Email"
-              name={LOGIN_TYPES.EMAIL}
-              icon={{
-                src: "/assets/icons/email.svg",
-                alt: "Email icon",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </>
-  );
 };
 
 export default LoginSplashScreen;

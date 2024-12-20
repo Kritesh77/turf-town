@@ -5,6 +5,8 @@ import Toast from "@/components/common/Toast";
 import useTimer from "@/hooks/useTimer";
 import { formatTime, isOtpValid } from "@/utils/functions";
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { basicOpacityAnimate } from "@/utils/framerAnimate";
 
 const PhoneVerificationStep2 = ({ handleClick }) => {
   const fakeErrorUsedRef = useRef(false);
@@ -13,8 +15,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [toast, setToast] = useState();
 
-  const { time, isTimerActive, startTimer} =
-    useTimer(90); // Initialize with 90 seconds
+  const { time, isTimerActive, startTimer } = useTimer(90); // Initialize with 90 seconds
 
   const handleInputClick = (e) => {
     e.preventDefault();
@@ -54,7 +55,9 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
   };
 
   return (
-    <>
+    <motion.section
+     {...basicOpacityAnimate}
+    >
       <Toast toast={toast} setToast={setToast} />
       <div className="login-btn-containers">
         <div className="phone-input-container">
@@ -90,7 +93,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
           )}
         </div>
       </div>
-    </>
+    </motion.section>
   );
 };
 

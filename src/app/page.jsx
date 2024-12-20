@@ -2,10 +2,11 @@
 import Loader from "@/components/Homepage/Loader";
 import LoginSplashScreen from "@/components/Homepage/LoginSplashScreen";
 import useTimer from "@/hooks/useTimer";
-import { AnimatePresence, motion } from "framer-motion";
+import { basicOpacityAnimate } from "@/utils/framerAnimate";
+import { motion } from "framer-motion";
 
 import Image from "next/image";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect } from "react";
 export default function Home() {
   const { isTimerActive, startTimer } = useTimer(1);
 
@@ -18,13 +19,7 @@ export default function Home() {
       {isTimerActive ? (
         <Loader />
       ) : (
-        <motion.main
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 1 }}
-          className="main-container "
-        >
+        <motion.main {...basicOpacityAnimate} className="main-container ">
           <div className="login-flow-container page-padding-x">
             <div className="relative">
               <Image
@@ -48,7 +43,7 @@ export default function Home() {
                 top: "50%",
                 left: -10,
               }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
               <Image
                 src={"/assets/images/players2.webp"}
@@ -80,8 +75,7 @@ export default function Home() {
             </motion.div>
             <motion.div
               className="login-image-subTitle"
-              initial={{ opacity: 0 }} // Enter animation
-              animate={{ opacity: 1 }}
+              {...basicOpacityAnimate}
               transition={{ delay: 1 }}
             >
               <p>Lets keep the world playing!</p>

@@ -1,13 +1,12 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
+import { basicOpacityAnimate } from "@/utils/framerAnimate";
 
 const Loader = () => {
   return (
     <motion.div
-      initial={{ opacity: 0 }} // Enter animation
-      animate={{ opacity: 1 }} // During visible state
-      exit={{ opacity: 0 }}
+      {...basicOpacityAnimate}
       className="main-container grid-cols-2 "
     >
       <div className="page-padding-x login-flow-container">

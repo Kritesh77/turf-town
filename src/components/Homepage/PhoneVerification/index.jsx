@@ -3,6 +3,7 @@ import PhoneVerificationStep1 from "./PhoneVerificationStep1";
 import PhoneVerificationStep2 from "./PhoneVerificationStep2";
 import LoginTextComp from "@/components/common/LoginText";
 import { motion } from "framer-motion";
+import { basicOpacityAnimate } from "@/utils/framerAnimate";
 const PhoneVerification = ({ handleClick }) => {
   const [step, setStep] = useState(0);
   const loginSteps = [
@@ -33,10 +34,7 @@ const PhoneVerification = ({ handleClick }) => {
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 1 }}
+      {...basicOpacityAnimate}
     >
       <LoginTextComp
         title={stepData?.title}
