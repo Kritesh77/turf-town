@@ -20,7 +20,7 @@ const Toast = ({ toast, setToast }) => {
     <AnimatePresence>
       {toast?.isActive && (
         <motion.div
-          initial={{ opacity: 0, bottom: "100%" }}
+          initial={{ opacity: 0, bottom: 0 }}
           animate={{ opacity: 1, bottom: 30 }}
           transition={{
             duration: 0.5,

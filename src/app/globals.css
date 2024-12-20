@@ -24,7 +24,7 @@ h1 {
   font-size: var(--font-size-xxl);
 }
 .page-padding-l {
-  padding: var(--padding-page-left);
+  /* margin: var(--padding-page-left); */
 }
 .w-full {
   width: 100%;
@@ -353,6 +353,7 @@ button {
     /* display: grid;
     grid-template-columns: repeat(1, minmax(0, 1fr)); */
     display: flex;
+    padding: 0 var(--padding-page-x-sm);
     flex-direction: column;
   }
   .login-image-container-front {
@@ -368,7 +369,7 @@ button {
     left: 0;
   }
   .login-flow-container {
-    padding-top: 6rem;
+    padding-top: 4rem;
   }
   .login-image-container {
     flex-grow: 1;

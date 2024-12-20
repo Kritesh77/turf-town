@@ -15,7 +15,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
   const [toast, setToast] = useState();
 
   const { time, isTimerActive, startTimer, stopTimer, resetTimer } =
-    useTimer(90); // Initialize with 60 seconds
+    useTimer(1); // Initialize with 60 seconds
 
   const handleInputClick = (e) => {
     e.preventDefault();
@@ -67,7 +67,7 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
               handleChange={handleInputClick}
               placeholder="Enter the 4 digit code"
               errorMessage={errorMessage}
-              inputStyles='otp-input'
+              inputStyles="otp-input"
             />
           </div>
         </div>

@@ -2,12 +2,14 @@
   /* Border radius */
   --radius-lg: 8px;
   --radius-xl: 12px;
-  --padding-page-x: 4rem;
+  --padding-page-x: 2rem;
   --padding-page-x-md: 6rem;
   --padding-page-x-lg: 10rem;
   --padding-page-x-xl: 40%;
   --padding-page-top-md: 4rem;
   --padding-page-top-lg: 6rem;
+
+  --padding-page-left: 2rem;
 
   /* Loaders */
   --loader-height-md:24px;

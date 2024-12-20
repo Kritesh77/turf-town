@@ -23,9 +23,9 @@ export default function Home() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1 }}
-          className="main-container page-padding-x"
+          className="main-container "
         >
-          <div className="login-flow-container">
+          <div className="login-flow-container page-padding-x">
             <div className="relative">
               <Image
                 src={"./assets/logo/TT Logo White.svg"}
@@ -39,7 +39,7 @@ export default function Home() {
             </div>
             <LoginSplashScreen />
           </div>
-          <div className="login-image-container relative">
+          <div className="login-image-container relative page-padding-l">
             <motion.div
               className="login-image-container-front"
               initial={{ opacity: 0, top: "60%", left: -100 }}
