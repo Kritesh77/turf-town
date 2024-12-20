@@ -1,21 +1,20 @@
 "use client";
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
-import LoginTextComp from "@/components/common/LoginText";
 import Toast from "@/components/common/Toast";
 import useTimer from "@/hooks/useTimer";
 import { formatTime, isOtpValid } from "@/utils/functions";
 import React, { useEffect, useRef, useState } from "react";
 
 const PhoneVerificationStep2 = ({ handleClick }) => {
+  const fakeErrorUsedRef = useRef(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [number, setNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const fakeErrorUsedRef = useRef(false);
   const [toast, setToast] = useState();
 
-  const { time, isTimerActive, startTimer, stopTimer, resetTimer } =
-    useTimer(1); // Initialize with 60 seconds
+  const { time, isTimerActive, startTimer} =
+    useTimer(90); // Initialize with 90 seconds
 
   const handleInputClick = (e) => {
     e.preventDefault();
