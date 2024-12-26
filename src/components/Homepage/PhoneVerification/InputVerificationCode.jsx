@@ -7,7 +7,6 @@ import { formatTime, isOtpValid } from "@/utils/functions";
 import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { basicOpacityAnimate } from "@/utils/framerAnimate";
-import { useDispatch } from "react-redux";
 
 const InputVerificationCode = ({ handleClick }) => {
   const fakeErrorUsedRef = useRef(false);
@@ -17,24 +16,27 @@ const InputVerificationCode = ({ handleClick }) => {
 
   const handleInputClick = (e) => {
     e.preventDefault();
-    // setNumber(e.target.value);
-    setNumber(4456);
+    setNumber(e.target.value);
+    // setNumber(4456);
   };
 
   useEffect(() => {
     setIsButtonDisabled(!isOtpValid(number));
   }, [number]);
 
-  const validateOtpAndProceed = useCallback((e) => {
-    if (!number) return;
-    if (fakeErrorUsedRef.current && !errorMessage) {
-      handleClick(e, true);
-      return;
-    }
-    setErrorMessage("Incorrect Code!");
-    setIsButtonDisabled(true);
-    fakeErrorUsedRef.current = true;
-  }, [isButtonDisabled, handleClick]);
+  const validateOtpAndProceed = useCallback(
+    (e) => {
+      if (!number) return;
+      if (fakeErrorUsedRef.current && !errorMessage) {
+        handleClick(e, true);
+        return;
+      }
+      setErrorMessage("Incorrect Code!");
+      setIsButtonDisabled(true);
+      fakeErrorUsedRef.current = true;
+    },
+    [isButtonDisabled, handleClick]
+  );
 
   const resetErrorResponse = useCallback(() => {
     setErrorMessage("");
@@ -77,7 +79,6 @@ const INITIAL_TIMER_SECONDS = 10;
 
 const ResendCodeTimer = memo(({ resetErrorResponse }) => {
   const { time, isTimerActive, startTimer } = useTimer();
-  console.log("ResendCodeTimer");
   const handleResendOtp = () => {
     startTimer(INITIAL_TIMER_SECONDS);
     showToast({

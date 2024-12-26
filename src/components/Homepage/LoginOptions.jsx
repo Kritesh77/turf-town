@@ -1,14 +1,9 @@
 "use client";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { LOGIN_TYPES } from "@/utils/constants";
+import React, {   useMemo, useState } from "react";
 import PhoneVerification from "./PhoneVerification";
 import InitialLoginScreen from "./InitialLoginScreen";
 
 const LoginOptions = () => {
-  useEffect(() => {
-    console.log("Rendering LoginOptions");
-  }, []);
-
   const loginMethods = useMemo(
     () => ({
       PHONE: {

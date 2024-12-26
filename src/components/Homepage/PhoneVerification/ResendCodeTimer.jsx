@@ -1,7 +1,6 @@
-import Toast from "@/components/common/ToastContainer";
 import useTimer from "@/hooks/useTimer";
 import { formatTime } from "@/utils/functions";
-import React, { memo, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 
 const ResendCodeTimer = () => {
   const [toast, setToast] = useState();

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import "../../styles/toast.css";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import {
   hideToastAction,
   showToastAction,
