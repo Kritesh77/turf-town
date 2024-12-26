@@ -17,8 +17,8 @@ const InputVerificationCode = ({ handleClick }) => {
 
   const handleInputClick = (e) => {
     e.preventDefault();
-    setNumber(e.target.value);
-    // setNumber(4456);
+    // setNumber(e.target.value);
+    setNumber(4456);
   };
 
   useEffect(() => {
