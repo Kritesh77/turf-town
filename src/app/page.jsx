@@ -1,7 +1,7 @@
 "use client";
-import HomepageHeroImages from "@/components/Homepage/HomepageHeroImages";
-import Loader from "@/components/Homepage/Loader";
-import LoginSplashScreen from "@/components/Homepage/LoginOptions";
+import HomepageHeroImages from "@/components/homepage/HomepageHeroImages";
+import Loader from "@/components/homepage/Loader";
+import LoginSplashScreen from "@/components/homepage/LoginOptions";
 import useTimer from "@/hooks/useTimer";
 import { basicOpacityAnimate } from "@/utils/framerAnimate";
 import { motion } from "framer-motion";
