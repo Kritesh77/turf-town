@@ -1,44 +1,39 @@
 "use client";
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
-import LoginTextComp from "@/components/common/LoginText";
 import { isPhoneNumberValid } from "@/utils/functions";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { basicOpacityAnimate } from "@/utils/framerAnimate";
-const PhoneVerificationStep1 = ({ handleClick }) => {
-  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
-  const [number, setNumber] = useState("");
 
-  const handleInputClick = (e) => {
+const InputPhoneNumber = ({ handleClick }) => {
+  const [number, setNumber] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  const handleInputClick = useCallback((e) => {
     e.preventDefault();
     // setNumber(e.target.value);
-  };
+    setNumber(9941882305);
+  }, []);
+
+  const validateAndProceed = useCallback(() => {
+    if (isButtonDisabled) return;
+    handleClick();
+  }, [isButtonDisabled, handleClick]);
 
   useEffect(() => {
-    if (isPhoneNumberValid(number)) {
-      setIsButtonDisabled(false);
-      return;
-    }
-    setIsButtonDisabled(true);
+    setIsButtonDisabled(!isPhoneNumberValid(number));
   }, [number]);
 
-  const validateAndProceed = () => {
-    if (!isPhoneNumberValid(number)) return;
-    handleClick();
-  };
-
   return (
-    <motion.section
-     {...basicOpacityAnimate}
-    >
+    <motion.section {...basicOpacityAnimate}>
       <div className="login-btn-containers">
         <div className="phone-input-container">
           <div className="relative country-container">
             <span className="btn-icon country-flag">🇮🇳</span>
             <p className="country-code">+91</p>
           </div>
-          <div className="w-full" onClick={() => setNumber(9941882305)}>
+          <div className="w-full">
             <Input
               type="tel"
               name="phoneNo"
@@ -62,4 +57,4 @@ const PhoneVerificationStep1 = ({ handleClick }) => {
   );
 };
 
-export default PhoneVerificationStep1;
+export default InputPhoneNumber;

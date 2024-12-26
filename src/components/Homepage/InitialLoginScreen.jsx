@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import LoginTextComp from "../common/LoginText";
 import Button from "../common/Button";
 import { LOGIN_TYPES } from "@/utils/constants";
 import { motion } from "framer-motion";
 import { basicOpacityAnimate } from "@/utils/framerAnimate";
-const InitalLoginScreen = ({
+
+const InitialLoginScreen = ({
   title,
   subTitle,
   coolShapeImage,
   handleClick,
 }) => {
+
+useEffect(() => {
+  console.log("Rendering InitialLoginScreen");
+}, []);
+
   return (
     <motion.section {...basicOpacityAnimate}>
       <LoginTextComp
@@ -59,4 +65,4 @@ const InitalLoginScreen = ({
   );
 };
 
-export default InitalLoginScreen;
+export default InitialLoginScreen;

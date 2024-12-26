@@ -1,67 +1,52 @@
 "use client";
 import Button from "@/components/common/Button";
 import Input from "@/components/common/Input";
-import Toast from "@/components/common/Toast";
+import { showToast, ToastContainer } from "@/components/common/ToastContainer";
 import useTimer from "@/hooks/useTimer";
 import { formatTime, isOtpValid } from "@/utils/functions";
-import React, { useEffect, useRef, useState } from "react";
+import React, { memo, useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { basicOpacityAnimate } from "@/utils/framerAnimate";
+import { useDispatch } from "react-redux";
 
-const PhoneVerificationStep2 = ({ handleClick }) => {
+const InputVerificationCode = ({ handleClick }) => {
   const fakeErrorUsedRef = useRef(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [number, setNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [toast, setToast] = useState();
-
-  const { time, isTimerActive, startTimer } = useTimer(90); // Initialize with 90 seconds
 
   const handleInputClick = (e) => {
     e.preventDefault();
-    // setNumber(e.target.value);
+    setNumber(e.target.value);
+    // setNumber(4456);
   };
 
   useEffect(() => {
-    if (isOtpValid(number)) {
-      setIsButtonDisabled(false);
-      return;
-    }
-    setIsButtonDisabled(true);
+    setIsButtonDisabled(!isOtpValid(number));
   }, [number]);
 
-  const handleOtpSubmit = () => {
+  const validateOtpAndProceed = useCallback((e) => {
     if (!number) return;
     if (fakeErrorUsedRef.current && !errorMessage) {
-      handleClick(null, true);
+      handleClick(e, true);
       return;
     }
     setErrorMessage("Incorrect Code!");
     setIsButtonDisabled(true);
     fakeErrorUsedRef.current = true;
-  };
+  }, [isButtonDisabled, handleClick]);
 
-  const handleResendOtp = () => {
-    setToast({
-      id: 1,
-      title: "Code resent",
-      timeOut: 1600,
-      isActive: true,
-    });
+  const resetErrorResponse = useCallback(() => {
     setErrorMessage("");
     setNumber("");
     setIsButtonDisabled(false);
-    startTimer();
-  };
+  }, []);
 
   return (
-    <motion.section
-     {...basicOpacityAnimate}
-    >
-      <Toast toast={toast} setToast={setToast} />
+    <motion.section {...basicOpacityAnimate}>
       <div className="login-btn-containers">
         <div className="phone-input-container">
-          <div className="phone-input" onClick={() => setNumber(4456)}>
+          <div className="phone-input">
             <Input
               type="text"
               name="code"
@@ -75,26 +60,48 @@ const PhoneVerificationStep2 = ({ handleClick }) => {
         </div>
         <div>
           <Button
-            handleClick={handleOtpSubmit}
+            handleClick={validateOtpAndProceed}
             title="Continue"
             isDisabled={isButtonDisabled}
             color={"primary"}
           />
         </div>
-        <div className="flex">
-          <p>Didn’t get it?</p>
 
-          {isTimerActive ? (
-            <p className="resend-time">Resend in {formatTime(time)}</p>
-          ) : (
-            <p className="resend-text" onClick={handleResendOtp}>
-              Resend Code
-            </p>
-          )}
-        </div>
+        <ResendCodeTimer resetErrorResponse={resetErrorResponse} />
       </div>
     </motion.section>
   );
 };
 
-export default PhoneVerificationStep2;
+const INITIAL_TIMER_SECONDS = 10;
+
+const ResendCodeTimer = memo(({ resetErrorResponse }) => {
+  const { time, isTimerActive, startTimer } = useTimer();
+  console.log("ResendCodeTimer");
+  const handleResendOtp = () => {
+    startTimer(INITIAL_TIMER_SECONDS);
+    showToast({
+      title: "Code resent",
+      isActive: true,
+    });
+    resetErrorResponse();
+  };
+
+  return (
+    <>
+      <ToastContainer />
+      <div className="flex">
+        <p>Didn’t get it?</p>
+        {isTimerActive ? (
+          <p className="resend-time">Resend in {formatTime(time)}</p>
+        ) : (
+          <p className="resend-text" onClick={handleResendOtp}>
+            Resend Code
+          </p>
+        )}
+      </div>
+    </>
+  );
+});
+
+export default InputVerificationCode;

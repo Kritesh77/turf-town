@@ -1,23 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
 
-const useTimer = (initialTime = 60) => {
-  const [time, setTime] = useState(initialTime); // Timer value
-  const [isTimerActive, setIsActive] = useState(false); // Active state
+const useTimer = (initialTime = 90) => {
+  const [time, setTime] = useState(initialTime);
+  const [isTimerActive, setIsActive] = useState(false);
 
   useEffect(() => {
     let timer;
     if (isTimerActive && time > 0) {
       timer = setInterval(() => {
-        setTime((prevTime) => prevTime - 1); // Decrease time
+        setTime((prevTime) => prevTime - 1);
       }, 1000);
     } else if (time === 0) {
-      setIsActive(false); // Stop when time hits 0
+      resetTimer(false);
     }
     return () => clearInterval(timer); // Cleanup
   }, [isTimerActive, time]);
 
-  const startTimer = () => setIsActive(true);
+  const startTimer = (time) => setIsActive(true);
   const stopTimer = () => setIsActive(false);
   const resetTimer = () => {
     setIsActive(false);

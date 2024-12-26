@@ -1,47 +1,60 @@
-import React, { useEffect, useState } from "react";
-import PhoneVerificationStep1 from "./PhoneVerificationStep1";
-import PhoneVerificationStep2 from "./PhoneVerificationStep2";
+import React, { useEffect, useState, useCallback, useMemo } from "react";
+import InputPhoneNumber from "./InputPhoneNumber";
+import InputVerificationCode from "./InputVerificationCode";
 import LoginTextComp from "@/components/common/LoginText";
 import { motion } from "framer-motion";
 import { basicOpacityAnimate } from "@/utils/framerAnimate";
-const PhoneVerification = ({ handleClick }) => {
-  const [step, setStep] = useState(0);
-  const loginSteps = [
-    {
-      id: 1,
-      step: 1,
-      title: "Enter your phone number",
-      subTitle: "Keep your phone closeby to verify.",
-      component: () => <PhoneVerificationStep1 handleClick={handleStep} />,
-    },
-    {
-      id: 2,
-      step: 2,
-      title: "Enter the code sent",
-      subTitle: "Please check your texts on +91 9840652520",
-      component: () => <PhoneVerificationStep2 handleClick={handleClick} />,
-    },
-  ];
-  const [stepData, setStepData] = useState(loginSteps[0]);
 
+const PhoneVerification = (props) => {
   useEffect(() => {
-    setStepData(loginSteps[step]);
-  }, [step]);
+    console.log("Rendering PhoneVerification");
+  }, []);
 
-  const handleStep = () => {
-    setStep(step + 1);
-  };
+  const [step, setStep] = useState(0);
+  
+  const handleStep = useCallback(() => {
+    setStep((prevStep) => prevStep + 1);
+  }, []);
+
+  const loginSteps = useMemo(
+    () => [
+      {
+        id: 1,
+        step: 1,
+        props: {
+          title: "Enter your phone number",
+          subTitle: "Keep your phone closeby to verify.",
+          handleClick: handleStep,
+        },
+        component: InputPhoneNumber,
+      },
+      {
+        id: 2,
+        step: 2,
+        props: {
+          title: "Enter the code sent",
+          subTitle: "Please check your texts on +91 9840652520",
+          handleClick: props.handleClick,
+        },
+        component: InputVerificationCode,
+      },
+    ],
+    [props.handleClick]
+  );
+
+  const stepData = useMemo(() => loginSteps[step], [loginSteps, step]);
+
+ 
+  const PhoneVerificationComponent = stepData.component;
 
   return (
-    <motion.section
-      {...basicOpacityAnimate}
-    >
+    <motion.section {...basicOpacityAnimate}>
       <LoginTextComp
-        title={stepData?.title}
-        subTitle={stepData?.subTitle}
-        coolShapeImage={stepData?.coolShapeImage}
+        title={props?.title}
+        subTitle={props?.subTitle}
+        coolShapeImage={props?.coolShapeImage}
       />
-      {stepData?.component?.()}
+      <PhoneVerificationComponent {...stepData.props} />
     </motion.section>
   );
 };

@@ -1,24 +1,32 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "../../styles/toast.css";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-const Toast = ({ toast, setToast }) => {
+import { useDispatch, useSelector } from "react-redux";
+import {
+  hideToastAction,
+  showToastAction,
+} from "@/redux/reducers/toastReducer";
+
+export const ToastContainer = React.memo(() => {
   const intervalRef = useRef(null);
+  const toastReducerData = useSelector((props) => props?.toastReducer);
 
   useEffect(() => {
-    if (toast?.timeOut) {
+    if (toastReducerData?.isActive) {
       intervalRef.current = setTimeout(() => {
-        setToast({ isActive: false });
-      }, toast?.timeOut);
+        hideToast();
+      }, toastReducerData?.timeOut);
       return () => {
+        if (!toastReducerData.isActive) hideToast();
         clearTimeout(intervalRef.current);
       };
     }
-  }, [toast]);
+  }, [toastReducerData]);
 
   return (
     <AnimatePresence>
-      {toast?.isActive && (
+      {toastReducerData?.isActive && (
         <motion.div
           initial={{ opacity: 0, bottom: 0 }}
           animate={{ opacity: 1, bottom: 30 }}
@@ -36,10 +44,19 @@ const Toast = ({ toast, setToast }) => {
               style={{ objectFit: "contain", padding: "4px" }}
             />
           </div>
-          <p className="toast-title">{toast?.title}</p>
+          <p className="toast-title">{toastReducerData?.title}</p>
         </motion.div>
       )}
     </AnimatePresence>
   );
+});
+
+export const showToast = (props = {}) => {
+  const store = require("@/redux/store/store").store;
+  store.dispatch(showToastAction(props));
 };
-export default Toast;
+
+export const hideToast = () => {
+  const store = require("@/redux/store/store").store;
+  store.dispatch(hideToastAction());
+};

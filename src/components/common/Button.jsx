@@ -1,11 +1,11 @@
 import Image from "next/image";
 import React from "react";
 
-const Button = ({ title, icon, handleClick, isDisabled, color, name }) => {
+const Button = ({ title, icon, handleClick, isDisabled, color, name = "" }) => {
   return (
-    <button
+    <div
       onClick={handleClick}
-      name={name}
+      data-target={name}
       className={`btn flex-center
         ${isDisabled ? "btn-disabled" : "btn-shadow"} 
         ${color ? `btn-${color}` : ""}`}
@@ -23,8 +23,8 @@ const Button = ({ title, icon, handleClick, isDisabled, color, name }) => {
       <div className="btn-title-container">
         <p className="btn-title">{title}</p>
       </div>
-    </button>
+    </div>
   );
 };
 
-export default Button;
+export default React.memo(Button);

@@ -1,6 +1,7 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { AnimatePresence } from "framer-motion";
+import ReduxProvider from "@/redux/ReduxProvider";
 
 const font = Nunito({
   variable: "--font-nunito",
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={``}>
-        <AnimatePresence>{children}</AnimatePresence>
+        <ReduxProvider>
+          <AnimatePresence>{children}</AnimatePresence>
+        </ReduxProvider>
       </body>
     </html>
   );
